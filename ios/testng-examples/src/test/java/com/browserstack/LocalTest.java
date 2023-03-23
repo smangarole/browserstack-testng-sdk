@@ -13,29 +13,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import io.appium.java_client.AppiumBy;
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.WebElement;
-
-import java.time.Duration;
 
 
 public class LocalTest extends AppiumTest {
 
   @Test
   public void test() throws Exception {
-    WebElement testButton = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-      ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("TestBrowserStackLocal")));
+    WebElement testButton = (WebElement) new WebDriverWait(driver, 30).until(
+      ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("TestBrowserStackLocal")));
     testButton.click();
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     wait.until(new ExpectedCondition<Boolean>() {
       @Override
       public Boolean apply(WebDriver d) {
-        String result = d.findElement(AppiumBy.accessibilityId("ResultBrowserStackLocal")).getAttribute("value");
+        String result = d.findElement(MobileBy.AccessibilityId("ResultBrowserStackLocal")).getAttribute("value");
         return result != null && result.length() > 0;
       }
     });
-    WebElement resultElement = (WebElement) driver.findElement(AppiumBy.accessibilityId("ResultBrowserStackLocal"));
+    WebElement resultElement = (WebElement) driver.findElement(MobileBy.AccessibilityId("ResultBrowserStackLocal"));
 
     String resultString = resultElement.getText().toLowerCase();
     System.out.println(resultString);

@@ -13,20 +13,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.AppiumBy;
+import io.appium.java_client.MobileBy;
 
 public class LocalTest extends AppiumTest {
 
     @Test
     public void test() throws Exception {
-    WebElement searchElement = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-        ExpectedConditions.elementToBeClickable(AppiumBy.id("com.example.android.basicnetworking:id/test_action")));
+    WebElement searchElement = (WebElement) new WebDriverWait(driver, 30).until(
+        ExpectedConditions.elementToBeClickable(MobileBy.id("com.example.android.basicnetworking:id/test_action")));
     searchElement.click();
-    WebElement insertTextElement = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-        ExpectedConditions.elementToBeClickable(AppiumBy.className("android.widget.TextView")));
+    WebElement insertTextElement = (WebElement) new WebDriverWait(driver, 30).until(
+        ExpectedConditions.elementToBeClickable(MobileBy.className("android.widget.TextView")));
 
     WebElement testElement = null;
-    List<WebElement> allTextViewElements = driver.findElements(AppiumBy.className("android.widget.TextView"));
+    List<WebElement> allTextViewElements = driver.findElements(MobileBy.className("android.widget.TextView"));
     Thread.sleep(10);
     for(WebElement textElement : allTextViewElements) {
       if(textElement.getText().contains("The active connection is")) {
